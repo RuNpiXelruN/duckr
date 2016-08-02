@@ -1,27 +1,22 @@
 import React, { Component, PropTypes } from 'react'
 import { Authenticate } from 'components'
-import auth from 'helpers/auth'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as userActionCreators from 'redux/modules/users'
 
 class AuthenticateContainer extends Component {
   propTypes: {
+    fetchAndHandleAuthedUser: PropTypes.func.isRequired,
     isFetching: PropTypes.bool.isRequired,
     error: PropTypes.string.isRequired,
-    authUser: PropTypes.func.isRequired,
-    fetchingUser: PropTypes.func.isRequired,
-    fetchingUserFailure: PropTypes.func.isRequired,
-    fetchingUserSuccess: PropTypes.func.isRequired
   }
-  handleAuth () {
-    this.props.fetchingUser()
-    auth().then((user) => {
-      this.props.fetchingUserSuccess(user.uid, user, Date.now())
-      this.props.authUser(user.uid)
-      console.log('User', user)
-    })
-    .catch((err) => this.props.fetchingUserFailure(error))
+  contextTypes: {
+    router: PropTypes.object.isRequired,
+  }
+  handleAuth (e) {
+    e.preventDefault()
+    this.props.fetchAndHandleAuthedUser()
+      .then(() => this.context.router.replace('feed'))
   }
   render () {
     console.log("Is fetching: ", this.props.isFetching)
