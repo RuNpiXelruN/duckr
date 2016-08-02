@@ -1,0 +1,7 @@
+.container {
+  width: 100%;
+}
+.innerContainer {
+  max-width: 80%;
+  margin-left: 10%;
+}
