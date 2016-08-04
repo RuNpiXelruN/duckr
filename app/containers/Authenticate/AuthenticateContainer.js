@@ -18,7 +18,7 @@ const AuthenticateContainer = React.createClass ({
     e.preventDefault()
     this.props.fetchAndHandleAuthedUser()
       .then(() => {
-        this.context.router.replace('feed')
+        this.context.router.replace('/feed')
       })
   },
 
