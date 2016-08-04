@@ -2,6 +2,10 @@ import React from 'react'
 import { hashHistory, Router, IndexRoute, Route } from 'react-router'
 import { MainContainer, HomeContainer, AuthenticateContainer, FeedContainer } from 'containers'
 
+export default function getRoutes (checkAuth) {
+
+}
+
 const routes = (
   <Router hsitory={hashHistory} >
     <Router path='/' component={MainContainer} >
